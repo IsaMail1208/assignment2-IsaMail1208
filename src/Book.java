@@ -8,50 +8,91 @@ public class Book {
 
     // TODO: Implement parameterized constructor
     public Book(String title, String author, int year) {
-        // implement
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.isAvailable = true;
     }
 
     // TODO: Implement copy constructor
     public Book(Book other) {
-        // implement
+        if (other != null) {
+            this.title = other.title;
+            this.author = other.author;
+            this.year = other.year;
+            this.isAvailable = other.isAvailable;
+        }
     }
 
     // TODO: Implement getters
     public String getTitle() {
-        return null;
+        return title;
     }
 
     public String getAuthor() {
-        return null;
+        return author;
     }
 
     public int getYear() {
-        return 0;
+        return year;
     }
 
     public boolean isAvailable() {
-        return false;
+        return isAvailable;
     }
 
     // TODO: Implement borrow logic
     public void borrowBook() {
-        // implement
+        if (isAvailable) {
+            isAvailable = false;
+        }
     }
 
     // TODO: Implement return logic
     public void returnBook() {
-        // implement
+        if (!isAvailable) {
+            isAvailable = true;
+        }
     }
 
     // TODO: Override toString()
     @Override
     public String toString() {
-        return "";
+        return "Title: " + title + ", Author: " + author + ", Year: " + year + ", Available: " + isAvailable;
     }
 
     // TODO: Override equals()
     @Override
     public boolean equals(Object obj) {
-        return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Book other = (Book) obj;
+
+        if (year != other.year) {
+            return false;
+        }
+
+        if (title == null) {
+            if (other.title != null) {
+                return false;
+            }
+        } else if (!title.equals(other.title)) {
+            return false;
+        }
+
+        if (author == null) {
+            if (other.author != null) {
+                return false;
+            }
+        } else if (!author.equals(other.author)) {
+            return false;
+        }
+
+        return true;
     }
 }
